@@ -1,0 +1,44 @@
+.user-profile-image {
+  border-radius: 50%;
+  background-color: $white;
+  color: $green;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  &.border {
+    border: 1px solid $veryLight;
+  }
+  &.large {
+    width: 150px;
+    height: 150px;
+    font-size: 5rem;
+  }
+  font-size: 1.3rem;
+  padding: 5px;
+  position: relative;
+  h1 {
+    font-weight: 700;
+  }
+  .online-status {
+    position: absolute;
+    border-radius: 50%;
+    bottom: 0;
+    right: 0;
+    width: 8px;
+    height: 8px;
+    &.large {
+      width: 16px;
+      height: 16px;
+      bottom: 5px;
+      right: 25px;
+    }
+    &.offline {
+      background-color: rgb(158, 157, 157);
+    }
+    &.online {
+      background-color: rgb(3, 250, 11);
+    }
+  }
+}

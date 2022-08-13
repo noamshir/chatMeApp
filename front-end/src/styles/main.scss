@@ -1,0 +1,27 @@
+@import './setup/helpers.scss';
+@import './setup/varibels.scss';
+@import './setup/mixins.scss';
+
+//Base
+@import './base/basics.scss';
+
+//CMP
+@import './cmp/side-bar-header.scss';
+@import './cmp/chat-side-bar';
+@import './cmp/chat.scss';
+@import './cmp/chat-header.scss';
+@import './cmp/chat-list.scss';
+@import './cmp/chat-msg-send';
+@import './cmp/chat-details.scss';
+@import './cmp/sign.scss';
+@import './cmp/sign-modal.scss';
+@import './cmp/sign-side-bar.scss';
+@import './cmp/profile-img.scss';
+@import './cmp/chat-preview.scss';
+@import './cmp/chat-bubble.scss';
+@import './cmp/add-chat-modal.scss';
+@import './cmp/emoji-box.scss';
+@import './cmp/imageMsg.scss';
+
+//General
+@import './cmp/general/options.scss';

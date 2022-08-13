@@ -1,0 +1,42 @@
+@mixin large-mobile-layout {
+  @media (min-width: $break-narrow) {
+    @content;
+  }
+}
+
+@mixin tablet-layout {
+  @media (min-width: $break-tablet) {
+    @content;
+  }
+}
+
+@mixin normal-layout {
+  @media (min-width: $break-normal) {
+    @content;
+  }
+}
+
+@mixin wide-layout {
+  @media (min-width: $break-wide) {
+    @content;
+  }
+}
+
+@mixin layoutWidth() {
+  width: 100%;
+  margin: auto;
+}
+
+@mixin layoutMaxWidth() {
+  max-width: 1400px;
+  margin: auto;
+}
+
+// Mixin for removing hover efects on iphone screen
+@mixin hover-supported {
+  @media not all and (pointer: coarse) {
+    &:hover {
+      @content;
+    }
+  }
+}

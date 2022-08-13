@@ -1,0 +1,40 @@
+.chat-details {
+  position: relative;
+  background-color: #fff;
+  padding: 12px 32px;
+  align-items: center;
+  gap: 20px;
+  box-shadow: -2px 0px 10px 1px #aaaaaa;
+  min-width: 300px;
+  .close-btn {
+    position: absolute;
+    background-color: inherit;
+    cursor: pointer;
+    border: 0;
+    top: 15px;
+    right: 8px;
+  }
+  .chat-user-info {
+    align-items: center;
+    margin-top: 100px;
+    .username {
+      margin-top: 10px;
+      font-size: 1.3rem;
+      color: $light;
+    }
+    .status {
+      margin-top: 5px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: $veryLight;
+    }
+  }
+  .chat-user-details {
+    color: $veryLight;
+    gap: 10px;
+    .chat-user-item-container {
+      align-items: center;
+      gap: 10px;
+    }
+  }
+}

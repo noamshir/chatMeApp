@@ -1,0 +1,34 @@
+.side-bar-header {
+  color: $green;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid $green;
+  padding: 0px 12px;
+  h1 {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  .options-container-sidebar-header {
+    position: relative;
+    .options-btn {
+      background-color: transparent;
+      border: 0px;
+      cursor: pointer;
+      color: $light;
+      position: relative;
+      @include tablet-layout {
+        color: $white;
+      }
+    }
+  }
+
+  @include tablet-layout {
+    color: $white;
+    border-bottom: unset;
+  }
+  @include large-mobile-layout {
+    h1 {
+      font-size: 2rem;
+    }
+  }
+}

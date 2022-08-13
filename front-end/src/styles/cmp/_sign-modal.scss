@@ -1,0 +1,61 @@
+.login {
+  flex-grow: 1;
+  position: relative;
+  align-items: center;
+  @include tablet-layout {
+    flex-grow: 3;
+  }
+  .sign-title {
+    color: $green;
+    font-size: 2rem;
+    margin-top: 100px;
+    text-align: center;
+    @media (min-width: $break-tablet) {
+      font-size: 3rem;
+      margin-top: 150px;
+    }
+  }
+  .chat-icon {
+    font-size: 7rem;
+    color: $green;
+  }
+  .login-form {
+    border-radius: 4px;
+    padding: 16px 24px;
+    justify-content: center;
+    gap: 15px;
+    .input-field {
+      align-items: center;
+      background-color: rgb(243, 248, 238);
+      padding: 0 10px;
+      .icon {
+        color: rgb(158, 158, 158);
+      }
+      input {
+        background-color: rgb(243, 248, 238);
+        border: 0;
+        outline: none;
+        font-size: 1.2rem;
+        padding: 12px;
+        &::placeholder {
+          color: rgbrgb(158, 158, 158);
+        }
+      }
+    }
+    .sign-submit {
+      background-color: #3bb78f;
+      background-image: linear-gradient(315deg, #3bb78f 0%, #0bab64 74%);
+      border: 1px solid $white;
+      color: $white;
+      font-size: 1.1rem;
+      padding: 12px 64px;
+      border-radius: 28px;
+      cursor: pointer;
+    }
+  }
+  .error-input-msg {
+    color: red;
+    font-weight: 400;
+    font-size: 1.3rem;
+  }
+}

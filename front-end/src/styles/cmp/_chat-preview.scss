@@ -1,0 +1,68 @@
+.chat-preview {
+  align-items: center;
+  gap: 10px;
+  color: $green;
+  width: 100%;
+  padding: 12px;
+  cursor: pointer;
+  .chat-preview-content {
+    flex-grow: 1;
+    h1 {
+      font-weight: 400;
+      font-size: 1rem;
+    }
+    p {
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      margin: 0;
+      font-size: 0.8rem;
+      color: $light;
+      font-weight: 400;
+      line-height: 1.2rem;
+    }
+  }
+  .chat-preview-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    .unread-count {
+      background-color: $green;
+      color: $white;
+      width: 20px;
+      height: 20px;
+      font-size: 1rem;
+      padding: 5px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      @include tablet-layout {
+        background-color: $white;
+        color: $green;
+      }
+    }
+    .chat-last-active-time {
+      color: $light;
+      font-size: 0.7rem;
+      @include tablet-layout {
+        color: $white;
+      }
+    }
+  }
+
+  &:hover {
+    background-color: rgba(125, 130, 123, 0.6);
+  }
+  &.active {
+    background-color: rgba(125, 130, 123, 0.6);
+  }
+  @include tablet-layout {
+    color: $white;
+    .chat-preview-content {
+      p {
+        color: rgb(209, 209, 209);
+      }
+    }
+  }
+}

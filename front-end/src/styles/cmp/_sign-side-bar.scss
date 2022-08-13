@@ -1,0 +1,50 @@
+.sign-side-bar {
+  flex-grow: 3;
+  background-color: #3bb78f;
+  background-image: linear-gradient(315deg, #3bb78f 0%, #0bab64 74%);
+  color: $white;
+  justify-content: center;
+  align-items: center;
+  .sign-side-bar-content {
+    width: 100%;
+    align-items: center;
+    gap: 20px;
+    h1,
+    h2 {
+      text-align: center;
+    }
+    h2 {
+      font-size: 2rem;
+    }
+    h1 {
+      font-size: 1.3rem;
+      max-width: 280px;
+    }
+    button {
+      border: 1px solid $white;
+      background-color: transparent;
+      color: $white;
+      font-size: 1.1rem;
+      padding: 12px 64px;
+      border-radius: 28px;
+      cursor: pointer;
+      &:hover {
+        background-color: $white;
+        color: $green;
+      }
+    }
+    @media (min-width: $break-narrow) {
+      h2 {
+        font-size: 3rem;
+      }
+      h1 {
+        font-size: 1.5rem;
+      }
+    }
+  }
+  @include tablet-layout {
+    max-width: 33%;
+    flex-grow: 1;
+    min-width: 350px;
+  }
+}
