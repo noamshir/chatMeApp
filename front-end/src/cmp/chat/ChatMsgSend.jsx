@@ -8,6 +8,7 @@ import { socketService, SOCKET_EMIT_TYPING } from '../../services/socket.service
 import EmojiBox from './EmojiBox';
 import { chatService } from '../../services/chat.service';
 import Loader from '../Loader';
+import { getReceiver } from '../../utils/chat_utils';
 export default function ChatMsgSend({ sendMsg, chat, user }) {
 
     const [txt, setTxt] = useState('');
@@ -18,7 +19,12 @@ export default function ChatMsgSend({ sendMsg, chat, user }) {
 
     const handleChange = ({ target }) => {
         setTxt(target.value)
-        socketService.emit(SOCKET_EMIT_TYPING, chat)
+        const chatId = chat._id
+        if(chatId) {
+            const receiver = getReceiver(chat.users, user)
+            const receiverId = receiver._id
+            socketService.emit(SOCKET_EMIT_TYPING, {chatId, receiverId})
+        }
     }
 
     const onSendMsg = async () => {

@@ -13,7 +13,7 @@ export const SOCKET_ON_ADDCHAT = "add-chat";
 export const SOCKET_EMIT_TYPING = "user-typing";
 export const SOCKET_ON_TYPING = "on-user-typing";
 export const SOCKET_EMIT_UPDATED_CHAT="chat-updated"
-export const SOCKET_ON_UPDATE_CHAT="on-chat-updated"
+export const SOCKET_ON_UPDATE_CHAT="updateChat"
 
 
 const baseUrl = process.env.NODE_ENV === "production" ? "" : "//localhost:3030";

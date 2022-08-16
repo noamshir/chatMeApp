@@ -1,39 +1,54 @@
-import { chatService } from "../services/chat.service";
+import { chatService } from '../services/chat.service';
 
 export function loadChats() {
   return async (dispatch) => {
-    const chats = await chatService.getChatsByUser();
-    dispatch({ type: "SET_CHATS", chats });
+    try {
+      const chats = await chatService.getChatsByUser();
+      dispatch({ type: 'SET_CHATS', chats });
+    } catch (error) {
+      console.error({ error });
+      dispatch({ type: 'SET_CHATS', chats: [] });
+    }
   };
 }
 
-export function addChat(chat, user) {
+export function addChat(chat, receiverId) {
   return async (dispatch) => {
     try {
-      const addedChat = await chatService.addChat(chat, user._id);
-      dispatch({ type: "ADD_CHAT", chat: addedChat });
+      const addedChat = await chatService.addChat(chat, receiverId);
+      dispatch({ type: 'ADD_CHAT', chat: addedChat });
       return addedChat;
     } catch (error) {
+      console.error({ error });
       return null;
     }
   };
 }
 
-export function socketAddChat(chat) {
+export function addChatToStore(chat) {
   return (dispatch) => {
-    dispatch({ type: "ADD_CHAT", chat });
+    dispatch({ type: 'START_NEW_CHAT', chat });
   };
 }
 
-export function updateChat(chat) {
+export function updateChat(chat, receiverId, withNewMsg = false) {
   return async (dispatch) => {
-    const updatedChat = await chatService.updateChat(chat);
-    dispatch({ type: "UPDATE_CHAT", updatedChat });
+    try {
+      const updatedChat = await chatService.updateChat(
+        chat,
+        receiverId,
+        withNewMsg
+      );
+      dispatch({ type: 'UPDATE_CHAT', updatedChat });
+      return updatedChat;
+    } catch (error) {
+      console.error({ error });
+    }
   };
 }
 
-export function socketUpdateChat(updatedChat) {
+export function updateChatInStore(updatedChat) {
   return (dispatch) => {
-    dispatch({ type: "UPDATE_CHAT", updatedChat });
+    dispatch({ type: 'UPDATE_CHAT', updatedChat });
   };
 }

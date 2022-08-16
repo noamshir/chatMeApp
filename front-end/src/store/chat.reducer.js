@@ -9,7 +9,10 @@ export function chatReducer(state = initialState, action) {
       newState = { ...state, chats: action.chats };
       break;
     case "ADD_CHAT":
-      newState = { ...state, chats: [...state.chats, action.chat] };
+      newState = { ...state, chats: [...state.chats.filter(chat => !!chat._id), action.chat] }
+      break;
+    case "START_NEW_CHAT":
+      newState = { ...state, chats: [...state.chats, action.chat] }
       break;
     case "UPDATE_CHAT":
       newState = {

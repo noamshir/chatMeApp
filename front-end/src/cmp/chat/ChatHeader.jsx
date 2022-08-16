@@ -6,7 +6,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { socketService, SOCKET_EMIT_CHECK_USER_CONNECTED, SOCKET_ON_USER_ONLINE, SOCKET_ON_USER_OFFLINE } from '../../services/socket.service';
 import { ChatContext } from '../../context/chatContext'
 
-export default function ChatHeader({ user, openUserDetails }) {
+export default function ChatHeader({ receiver, openUserDetails }) {
 
     const [isOnline, setIsOnline] = useState(false)
 
@@ -17,15 +17,15 @@ export default function ChatHeader({ user, openUserDetails }) {
         return () => {
             disableSockets()
         }
-    }, [user])
+    }, [receiver])
 
     const setSockets = () => {
-        socketService.emit(SOCKET_EMIT_CHECK_USER_CONNECTED, user._id);
+        socketService.emit(SOCKET_EMIT_CHECK_USER_CONNECTED, receiver._id);
         socketService.on(SOCKET_ON_USER_ONLINE, (userId) => {
-            if (user._id === userId) setIsOnline(true);
+            if (receiver._id === userId) setIsOnline(true);
         })
         socketService.on(SOCKET_ON_USER_OFFLINE, (userId) => {
-            if (user._id === userId) setIsOnline(false);
+            if (receiver._id === userId) setIsOnline(false);
         })
     }
 
@@ -47,7 +47,7 @@ export default function ChatHeader({ user, openUserDetails }) {
                     <ArrowBackIcon />
                 </button>}
                 <i className={`online-status ${onlineClass}`}></i>
-                <h1 onClick={openUserDetails}>{user.username}</h1>
+                <h1 onClick={openUserDetails}>{receiver.username}</h1>
             </div>
             <div className="chat-header-btns flex">
                 <button className="header-chat-btn">

@@ -8,7 +8,7 @@ import { ChatContext } from '../context/chatContext'
 import screenService from '../services/screen.service'
 import { socketService, SOCKET_EMIT_UPDATED_CHAT } from '../services/socket.service'
 import { utilService } from '../services/util.service'
-import { loadChats, socketAddChat, socketUpdateChat, updateChat } from '../store/chat.action'
+import { loadChats, addChatToStore, updateChatInStore, updateChat } from '../store/chat.action'
 
 export default function Chat() {
     const [currChat, setChat] = useState();
@@ -48,10 +48,10 @@ export default function Chat() {
 
     }, [isMobile, currChat]);
 
-    const onReceivedMsg = (chat) => {
-        const onUpdatedChat = chats.find(cChat => cChat._id === chat._id);
+    const onReceivedMsg = (chatWithNewMsg) => {
+        const onUpdatedChat = chats.find(cChat => cChat._id === chatWithNewMsg._id);
         const currMsgs = onUpdatedChat.msgs;
-        const msgs = chat.msgs.map((msg, idx) => {
+        const msgs = chatWithNewMsg.msgs.map((msg, idx) => {
             if (currMsgs.length > idx) {
                 if (currMsgs[idx].viewers.includes(user._id) && !(msg.viewers.includes(user._id))) {
                     const updatedMsg = { ...msg };
@@ -66,16 +66,13 @@ export default function Chat() {
                 return msg;
             }
         })
-        const updatedChat = { ...chat, msgs };
-        dispatch(socketUpdateChat(updatedChat))
+        const updatedChat = { ...chatWithNewMsg, msgs };
+        dispatch(updateChatInStore(updatedChat))
         if (updatedChat._id === currChat?._id) {
             updatedChat.msgs = utilService.markAllAsRead(msgs, user._id)
             setChat(updatedChat);
             socketService.emit(SOCKET_EMIT_UPDATED_CHAT, { updatedChat, user });
-            const chatToUpdate = { ...updatedChat };
-            chatToUpdate.users = [user, updatedChat.user]
-            delete chatToUpdate.user
-            dispatch(updateChat(chatToUpdate));
+            dispatch(updateChat(updatedChat));
         }
     }
 
@@ -84,18 +81,18 @@ export default function Chat() {
     }
 
     const onChatUpdated = (chat) => {
-        dispatch(socketUpdateChat(chat))
+        dispatch(updateChatInStore(chat))
     }
 
     const onAddChat = (chat) => {
-        dispatch(socketAddChat(chat))
+        dispatch(addChatToStore(chat))
     }
 
     return (
         <section className="main-app-chat  flex">
             <ChatContext.Provider value={{ currChat, setChat, isMobile }}>
-                {(!isMobile || isMobile && renderSideBar) && <SideBar onReceivedMsg={onReceivedMsg} onChatUpdated={onChatUpdated} onAddChatFromSocket={onAddChat} />}
-                {(!isMobile || isMobile && renderConversation) && <ChatContent chat={currChat} openUserDetails={() => setIsDetailsOpen(true)} onReceivedMsg={onReceivedMsg} onChatUpdated={onChatUpdated} onAddChat={onAddChat} />}
+                {(!isMobile || isMobile && renderSideBar) && <SideBar onReceivedMsg={onReceivedMsg} onChatUpdated={onChatUpdated} addNewChat={onAddChat} />}
+                {(!isMobile || isMobile && renderConversation) && <ChatContent  openUserDetails={() => setIsDetailsOpen(true)} onReceivedMsg={onReceivedMsg} onChatUpdated={onChatUpdated} onAddChat={onAddChat} />}
                 {/* {isDetailsOpen && <ChatDetails close={() => setIsDetailsOpen(false)} />} */}
             </ChatContext.Provider>
         </section>

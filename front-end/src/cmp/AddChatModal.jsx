@@ -6,13 +6,14 @@ import CloseIcon from '@mui/icons-material/Close';
 import { userService } from '../services/user.service';
 import { useSelector } from 'react-redux';
 
-export default function AddChatModal({ toggleModal, addChat }) {
+export default function AddChatModal({ toggleModal, addChat,selectedReceiver, setSelectedReceiver }) {
     const [users, setUsers] = useState([]);
-    const [selctedUser, setSelctedUser] = useState()
     const user = useSelector(({ userModule }) => userModule.user)
+
     useEffect(() => {
         loadUsers();
     }, [])
+
     const defaultProps = {
         options: users,
         getOptionLabel: (user) => user.username,
@@ -22,15 +23,16 @@ export default function AddChatModal({ toggleModal, addChat }) {
         if (usersOptions) setUsers(usersOptions)
     }
     const selectUser = (ev, val) => {
-        setSelctedUser(val)
+        setSelectedReceiver(val)
     }
 
     const startChat = () => {
-        if (!selctedUser) return;
-        const chat = { users: [selctedUser, user], msgs: [] }
+        if (!selectedReceiver) return;
+        const chat = { users: [selectedReceiver, user], msgs: [] }
         addChat(chat);
         toggleModal();
     }
+    
     return (
         <div className="screen" >
             <div className="add-chat-modal flex column">

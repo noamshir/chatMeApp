@@ -4,7 +4,8 @@ export const utilService = {
 };
 
 function getUnreadMsgCount(msgs, userId) {
-  var count = 0;
+  if(!msgs) return null
+  let count = 0;
   msgs.forEach((msg) => {
     if (!msg.viewers || !msg.viewers.length) {
       count++;
