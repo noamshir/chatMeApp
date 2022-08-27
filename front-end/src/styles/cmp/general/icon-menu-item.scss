@@ -1,0 +1,26 @@
+.icon-menu-item-container{
+    justify-content: center;
+    align-items: center;
+    &:hover{
+      color: $green;
+      gap: 10px;
+    }
+    .icon-menu-item{
+        color: $light;
+        &.hovered{
+          color: $green;
+        }
+      }
+      .icon-label{
+        color: $green;
+        visibility: hidden;
+        opacity: 0;
+        width: 0;
+        transition: visibility 0s, opacity 0.5s ease;
+        &.hovered{
+          visibility: visible;
+          opacity: 1;
+          width: unset;
+        }
+      }
+  }

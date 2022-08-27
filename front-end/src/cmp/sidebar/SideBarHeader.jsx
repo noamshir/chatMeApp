@@ -1,41 +1,28 @@
 import React, { useState } from 'react'
-import MoreVertIcon from '@mui/icons-material/MoreVert';
+import MoreVertIcon from '@mui/icons-material/MoreVert'
 
 import Search from './Search'
-import Options from '../general/Options';
+import Options from '../general/NavBar'
 
-export default function SideBarHeader({ isMobile, openProfile, toggleAddChatModal, logout }) {
-    const [isOptionsOpen, setIsOptionsOpen] = useState(false);
+export default function SideBarHeader({ isMobile, options }) {
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
 
-    const getOptions = () => {
-        return [
-            {
-                label: 'Profile',
-                action: openProfile
-            },
-            {
-                label: 'Add chat',
-                action: toggleAddChatModal
-            },
-            {
-                label: 'Logout',
-                action: logout
-            }
-        ]
-    }
+  const toggleMenuStatus = () => {
+    setIsMenuOpen(!isMenuOpen)
+  }
 
-    const toggleOptions = () => {
-        setIsOptionsOpen(!isOptionsOpen)
-    }
-
-    return (
-        <header className="side-bar-header flex">
-            <h1>chatMe</h1>
-            {isMobile && <Search />}
-            {(!isMobile) && <div className='options-container-sidebar-header'>
-                <button className='options-btn' onClick={toggleOptions}><MoreVertIcon /></button>
-                {isOptionsOpen && <Options options={getOptions()} />}
-            </div>}
-        </header>
-    )
+  return (
+    <header className='side-bar-header flex'>
+      {!isMobile && (
+        <div className='options-container-sidebar-header'>
+          <button className='options-btn' onClick={toggleMenuStatus}>
+            <MoreVertIcon />
+          </button>
+          {isMenuOpen && <Options options={options} />}
+        </div>
+      )}
+      <h1>chatMe</h1>
+      {isMobile && <Search />}
+    </header>
+  )
 }

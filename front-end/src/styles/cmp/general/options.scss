@@ -6,20 +6,15 @@
   box-shadow: 18px 29px 26px -20px rgba(59, 68, 67, 0.61);
 
   .options-list {
-    margin: 0;
-    padding: 0;
     height: 100%;
     display: flex;
     flex-direction: column;
   }
-  .option-item {
-    padding: 6px 12px;
-    font-size: 0.7rem;
-    font-weight: bold;
-    cursor: pointer;
-    width: 100px;
-    &:hover {
-      background-color: rgba(97, 93, 93, 0.104);
+  .option-item{
+    height: 30px;
+    padding: 12px 6px;
+    &:hover{
+      background-color: rgb(220, 212, 212);
     }
   }
 }

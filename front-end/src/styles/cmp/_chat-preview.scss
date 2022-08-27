@@ -1,11 +1,11 @@
-.chat-preview {
+.chat-preview-container {
   align-items: center;
   gap: 10px;
   color: $green;
   width: 100%;
   padding: 12px;
   cursor: pointer;
-  .chat-preview-content {
+  .chat-preview-details-container {
     flex-grow: 1;
     h1 {
       font-weight: 400;
@@ -20,7 +20,7 @@
       line-height: 1.2rem;
     }
   }
-  .chat-preview-container {
+  .time-unread-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -42,7 +42,7 @@
         color: $green;
       }
     }
-    .chat-last-active-time {
+    .last-msg-sent-time {
       color: $light;
       font-size: 0.7rem;
       @include tablet-layout {
@@ -59,7 +59,7 @@
   }
   @include tablet-layout {
     color: $white;
-    .chat-preview-content {
+    .chat-preview-details-container {
       p {
         color: rgb(209, 209, 209);
       }

@@ -1,0 +1,18 @@
+.bottom-navbar-container{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    border-top: $green 1px solid;
+    z-index: 9999;
+    padding: 10px;
+    transition-duration: 3s, 1s;
+    transition-property: margin-left, color;
+    .option-item{
+    font-size: 1rem;
+    height: 25px;
+    }
+    .options-list{
+        display: flex;
+        justify-content: space-around;
+    }
+}
