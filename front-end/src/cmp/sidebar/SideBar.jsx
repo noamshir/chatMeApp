@@ -10,7 +10,7 @@ import SideBarHeader from './SideBarHeader'
 import { AddChatModalScreen } from '../AddChatModal'
 
 import { logout } from '../../store/user.action'
-import { addChatToStore } from '../../store/chat.action'
+import { addChatToStore, setChats } from '../../store/chat.action'
 
 import {
   socketService,
@@ -55,6 +55,7 @@ export default function SideBar({ onReceivedMsg, onChatUpdated, addNewChat }) {
   const onLogout = async () => {
     await dispatch(logout())
     socketService.emit(SOCKET_EMIT_LOGOUT, user._id)
+    await dispatch(setChats([]))
   }
 
   const toggleModal = () => {
