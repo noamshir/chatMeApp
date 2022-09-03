@@ -60,7 +60,7 @@ export default function ChatPreview({ chat, receiver }) {
     let sub = msgs[0] ? chat.msgs[msgsLength - 1].txt : 'New Chat'
     if (!sub) sub = 'Photo'
     sub = isTyping ? 'typing...' : sub
-    if (sub.length > 10) sub = sub.slice(0, 8) + '...'
+    if (sub.length > 20) sub = sub.slice(0, 19) + '...'
     return sub
   }
 
