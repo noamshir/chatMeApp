@@ -12,7 +12,7 @@ export function loadChats() {
   }
 }
 
-export function addChat(chat, receiverId) {
+export function addChatToDb(chat, receiverId) {
   return async (dispatch) => {
     try {
       const addedChat = await chatService.addChat(chat, receiverId)

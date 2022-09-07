@@ -76,10 +76,9 @@ export default function Chat() {
         return msg
       }
     })
-    if (msgs && msgs.length) {
-      const { txt, from } = msgs[msgs.length - 1]
-      notifyUser(txt, from.username)
-    }
+
+    sendReceivedMsgNotification(msgs)
+
     const updatedChat = { ...chatWithNewMsg, msgs }
     dispatch(updateChatInStore(updatedChat))
     if (updatedChat._id === currChat?._id) {
@@ -87,6 +86,13 @@ export default function Chat() {
       setChat(updatedChat)
       socketService.emit(SOCKET_EMIT_UPDATED_CHAT, { updatedChat, user })
       dispatch(updateChat(updatedChat))
+    }
+  }
+
+  const sendReceivedMsgNotification = (msgs) => {
+    if (msgs && msgs.length) {
+      const { txt, from } = msgs[msgs.length - 1]
+      notifyUser(txt, from.username)
     }
   }
 
@@ -98,7 +104,8 @@ export default function Chat() {
     dispatch(updateChatInStore(chat))
   }
 
-  const onAddChat = (chat) => {
+  const onAddChatFromSocket = (chat) => {
+    sendReceivedMsgNotification(chat.msgs)
     dispatch(addChatToStore(chat))
   }
 
@@ -109,7 +116,7 @@ export default function Chat() {
           <SideBar
             onReceivedMsg={onReceivedMsg}
             onChatUpdated={onChatUpdated}
-            addNewChat={onAddChat}
+            addNewChat={onAddChatFromSocket}
           />
         )}
         {(!isMobile || (isMobile && renderConversation)) && (
@@ -117,7 +124,7 @@ export default function Chat() {
             openUserDetails={() => setIsDetailsOpen(true)}
             onReceivedMsg={onReceivedMsg}
             onChatUpdated={onChatUpdated}
-            onAddChat={onAddChat}
+            onAddChat={onAddChatFromSocket}
           />
         )}
       </ChatContext.Provider>

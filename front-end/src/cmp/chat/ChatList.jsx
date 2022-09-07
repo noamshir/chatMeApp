@@ -4,7 +4,7 @@ import { socketService, SOCKET_ON_TYPING } from '../../services/socket.service'
 import ChatBubble from './ChatBubble'
 import ChatBubbleTyping from './ChatBubbleTyping'
 import ImageMsg from './ImageMsg'
-import NoMsg from './NoMsg'
+import NoMsgs from '../general/NoMsg'
 
 export default function ChatList({ msgs, chatId }) {
   const chatListContainer = useRef(null)
@@ -59,7 +59,7 @@ export default function ChatList({ msgs, chatId }) {
       )}
       <div id='scroll-to-bottom' ref={chatListContainer} />
 
-      {!msgs.length && <NoMsg />}
+      {!msgs.length && <NoMsgs />}
     </section>
   )
 }

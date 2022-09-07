@@ -12,9 +12,9 @@ import {
   SOCKET_ON_ADDMSG,
   SOCKET_ON_UPDATE_CHAT,
 } from '../../services/socket.service'
-import NoMsg from './NoMsg'
+import NoMsgs from '../general/NoMsg'
 import { ChatContext } from '../../context/chatContext'
-import { addChat, updateChat } from '../../store/chat.action'
+import { addChatToDb, updateChat } from '../../store/chat.action'
 import { getReceiver } from '../../utils/chat'
 import { utilService } from '../../services/util.service'
 
@@ -68,7 +68,7 @@ export default function ChatContent({
       const withNewMsg = true
       await dispatch(updateChat(updatedChat, receiverId, withNewMsg))
     } else {
-      const addedChat = await dispatch(addChat(updatedChat, receiverId))
+      const addedChat = await dispatch(addChatToDb(updatedChat, receiverId))
       setChat(addedChat)
     }
   }
@@ -76,7 +76,7 @@ export default function ChatContent({
   return (
     <section className='chat flex column'>
       {!currChat || !currChat.msgs ? (
-        <NoMsg />
+        <NoMsgs />
       ) : (
         <>
           <ChatHeader

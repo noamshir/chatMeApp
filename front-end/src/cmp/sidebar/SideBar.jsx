@@ -22,6 +22,7 @@ import {
 } from '../../services/socket.service'
 import { ChatContext } from '../../context/chatContext'
 import { BottomNavBar } from '../mobile/BottomNavBar'
+import NoMsgs from '../general/NoMsg'
 
 export default function SideBar({ onReceivedMsg, onChatUpdated, addNewChat }) {
   const dispatch = useDispatch()
@@ -62,7 +63,7 @@ export default function SideBar({ onReceivedMsg, onChatUpdated, addNewChat }) {
     setIsModalOpen(!isModalOpen)
   }
 
-  const onAddNewChat = async (chat) => {
+  const addChatOnlyToStore = async (chat) => {
     dispatch(addChatToStore(chat))
     setChat(chat)
   }
@@ -91,15 +92,17 @@ export default function SideBar({ onReceivedMsg, onChatUpdated, addNewChat }) {
     ]
   }
 
+  const userHasChats = chats && chats.length
+
   return (
     <section className='side-bar flex column'>
       <SideBarHeader isMobile={isMobile} options={getOptions()} />
       {!isMobile && <Search />}
-      <ChatList chats={chats} />
+      {userHasChats ? <ChatList chats={chats} /> : isMobile ? <NoMsgs /> : null}
       {isModalOpen && (
         <AddChatModalScreen
           toggleModal={toggleModal}
-          addChat={onAddNewChat}
+          addChat={addChatOnlyToStore}
           selectedReceiver={selectedReceiver}
           setSelectedReceiver={setSelectedReceiver}
         />
