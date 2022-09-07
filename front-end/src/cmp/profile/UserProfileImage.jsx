@@ -22,7 +22,6 @@ export default function UserProfileImage({
   const setSockets = () => {
     socketService.emit(SOCKET_EMIT_CHECK_USER_CONNECTED, user._id)
     socketService.on(SOCKET_ON_USER_ONLINE, (userId) => {
-      console.log(user._id === userId)
       if (user._id === userId) setIsOnline(true)
     })
     socketService.on(SOCKET_ON_USER_OFFLINE, (userId) => {
