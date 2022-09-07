@@ -15,7 +15,7 @@ import {
 import NoMsg from './NoMsg'
 import { ChatContext } from '../../context/chatContext'
 import { addChat, updateChat } from '../../store/chat.action'
-import { getReceiver } from '../../utils/chat_utils'
+import { getReceiver } from '../../utils/chat'
 import { utilService } from '../../services/util.service'
 
 export default function ChatContent({

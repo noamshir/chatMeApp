@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 
-import { getReceiver } from '../../utils/chat_utils'
+import { getReceiver } from '../../utils/chat'
 import ChatPreview from './ChatPreview'
 
 export default function ChatList({ chats }) {

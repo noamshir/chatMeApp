@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import ChatDetails from '../cmp/chat-details/ChatDetails'
 import ChatContent from '../cmp/chat/ChatContent'
 import SideBar from '../cmp/sidebar/SideBar'
 import { ChatContext } from '../context/chatContext'
@@ -121,7 +120,6 @@ export default function Chat() {
             onAddChat={onAddChat}
           />
         )}
-        {/* {isDetailsOpen && <ChatDetails close={() => setIsDetailsOpen(false)} />} */}
       </ChatContext.Provider>
     </section>
   )

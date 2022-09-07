@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import { ChatContext } from '../../context/chatContext'
 import { socketService, SOCKET_ON_TYPING } from '../../services/socket.service'
 import { utilService } from '../../services/util.service'
-import { getReceiver } from '../../utils/chat_utils'
+import { getReceiver } from '../../utils/chat'
 import { formatTime } from '../../utils/time'
 import UserProfileImage from '../profile/UserProfileImage'
 
