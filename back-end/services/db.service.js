@@ -22,10 +22,7 @@ async function getCollection(collectionName) {
 async function connectToMongo() {
   if (mongoClient) return mongoClient
   try {
-    const client = await MongoClient.connect(config.dbURL, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    })
+    const client = await getMongoClient()
     const dbInstance = client.db(databaseName)
     console.log('connected to mongo client')
     mongoClient = dbInstance
@@ -36,7 +33,15 @@ async function connectToMongo() {
   }
 }
 
+async function getMongoClient() {
+  return await MongoClient.connect(config.dbURL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+}
+
 module.exports = {
   getCollection,
   connectToMongo,
+  getMongoClient,
 }

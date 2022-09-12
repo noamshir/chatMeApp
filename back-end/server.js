@@ -2,16 +2,23 @@ require('dotenv').config()
 const express = require('express')
 const path = require('path')
 const expressSession = require('express-session')
+const MongoStore = require('connect-mongo')
+
 const app = express()
 const http = require('http').createServer(app)
 
 const customCors = require('./middleware/cors')
 
 const { connectSockets } = require('./services/socket.service')
-const { connectToMongo } = require('./services/db.service')
+const { connectToMongo, getMongoClient } = require('./services/db.service')
 
 const session = expressSession({
   secret: 'chatMe',
+  store: MongoStore.create({
+    clientPromise: getMongoClient(),
+    dbName: process.env.DB_NAME,
+    collectionName: 'user-sessions',
+  }),
   resave: false,
   saveUninitialized: true,
   cookie: { secure: false },
