@@ -3,17 +3,17 @@ const bcrypt = require('bcrypt')
 
 async function login(username, password) {
   const user = await userService.getByUsername(username)
-  if (!user) return Promise.reject('no such user')
+  if (!user) return Promise.reject('No such user')
   const match = await bcrypt.compare(password, user.password)
-  if (!match) return Promise.reject('wrong password')
+  if (!match) return Promise.reject('Wrong password')
   delete user.password
   return user
 }
 
 async function signUp(user) {
   const saltRounds = 10
-  const exsitUser = await userService.getByUsername(user.username)
-  if (exsitUser) {
+  const existUser = await userService.getByUsername(user.username)
+  if (existUser) {
     return Promise.reject('username taken')
   }
   const hash = await bcrypt.hash(user.password, saltRounds)
