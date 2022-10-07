@@ -18,7 +18,7 @@ describe('Test cors middleware', () => {
     return res
   }
 
-  test('should advance to next function', () => {
+  test('should advance to next function if request was made from the same origin', () => {
     const nextFnMock = jest.fn()
 
     const req = reqMock()
@@ -27,7 +27,7 @@ describe('Test cors middleware', () => {
     expect(nextFnMock).toHaveBeenCalledTimes(1)
   })
 
-  test('should return 403', () => {
+  test('should return 403 if request was made from unauthorized domain', () => {
     const unauthorizedOrigin = 'www.unauthorized.com'
 
     const nextFnMock = jest.fn()

@@ -12,7 +12,7 @@ describe('test auth middleware', () => {
     res.json = jest.fn().mockReturnValue(res)
     return res
   }
-  test('should fail with 401', () => {
+  test('should fail with 401 if no user in session', () => {
     const req = mockRequest()
     const res = mockResponse()
     const nextMock = jest.fn()
@@ -23,7 +23,7 @@ describe('test auth middleware', () => {
       error: 'user unauthenticated, please login to chatMe.',
     })
   })
-  test('should pass auth middleware', () => {
+  test('should pass auth middleware if session has user in it', () => {
     const user = { username: 'test' }
     const req = mockRequest(user)
     const res = mockResponse()

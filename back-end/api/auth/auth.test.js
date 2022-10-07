@@ -18,7 +18,7 @@ afterAll(async () => {
   await closeMongoConnection()
 })
 
-test('should not login', async () => {
+test(`should not login if user doesn't exist`, async () => {
   const { username, password } = invalidUser
   try {
     const res = await authService.login(username, password)
