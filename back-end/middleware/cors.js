@@ -1,7 +1,7 @@
 const cors = require('cors')
 
 const customCors = (req, res, next) => {
-  const whitelist = ['chatMeApp.com', 'http://localhost:3000']
+  const whitelist = ['chatMeApp.com', 'http://localhost:3030']
   const corsOptions = {
     origin: (origin, callback) => {
       if (!origin || whitelist.indexOf(origin) !== -1) {

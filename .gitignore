@@ -1,5 +1,6 @@
 # dependencies
 node_modules
+back-end/public
 
 /.pnp
 .pnp.js
